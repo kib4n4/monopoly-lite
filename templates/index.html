@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<h1>Monopoly Game</h1>
+{% endblock %}
+
+{% block body %}
+<div>
+    <h2>Select Token</h2>
+    <form action="{{ url_for('select_token') }}" method="post">
+        {% for token in tokens %}
+        <input type="radio" id="{{ token }}" name="token" value="{{ token }}">
+        <label for="{{ token }}">{{ token }}</label><br>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}
