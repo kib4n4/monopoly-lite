@@ -29,5 +29,6 @@ class GameState(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     current_player_id = db.Column(db.Integer, db.ForeignKey('player.id'))
     room = db.Column(db.String(50))
+    status = db.Column(db.String(50), default='pending')
     players = db.relationship(
         'Player', backref='game_state', lazy=True, foreign_keys='Player.game_state_id')
