@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+import uuid
 
 # models.py
 db = SQLAlchemy()
@@ -23,4 +24,5 @@ class Property(db.Model):
 class GameState(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     current_player_id = db.Column(db.Integer, db.ForeignKey('player.id'))
+    room=db.Column(db.string,default=uuid.uuid4())
     players = db.relationship('Player', backref='game_state', lazy=True)

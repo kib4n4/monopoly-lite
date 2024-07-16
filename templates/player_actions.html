@@ -10,6 +10,7 @@
     <p>Current Position: {{ square.name }}</p>
     {% if square.type == 'property' %}
     <p>Price: {{ square.price }}</p>
+    
     <form action="{{ url_for('buy_property', property_id=square.id) }}" method="post">
         <button type="submit">Buy Property</button>
     </form>

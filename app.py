@@ -24,12 +24,18 @@ def home():
 
 @app.route('/select_token', methods=['POST'])
 def select_token():
+    game_state = GameState.query.filter()
+    if not game_state:
+        game_state = GameState()
+        db.session.add(game_state)
+        db.session.commit()
+
     token = request.form.get('token')
     if token:
         player = Player(name=f'Player {Player.query.count() + 1}', token=token)
         db.session.add(player)
         db.session.commit()
-    return redirect(url_for('tokens'))
+    return redirect(url_for('tokens.html'),token=token)
 
 
 @app.route('/tokens')
@@ -37,13 +43,33 @@ def tokens():
     players = Player.query.all()
     return render_template('tokens.html', players=players)
 
+@app.route('/rooms/<str:room>/>',methods=['GET','POST'])
+def rooms(room):
+    game_state=GameState.query.filter_by(room)
+    if not game_state:
+        game_state=GameState(room=room)
+        db.session.add(game_state)
+        db.session.commit()
+        return render_template('player_actions.html',game_state=game_state)
+
+@app.route('/rooms/>',methods=['POST'])
+def lobby():
+    player=
+    game_state=GameState.query.filter_by(room)
+    if not game_state:
+        game_state=GameState(room=room)
+        db.session.add(game_state)
+        db.session.commit()
+        return render_template('player_actions.html',game_state=game_state)
+
+
 
 @app.route('/roll_dice', methods=['POST'])
-def roll_dice_route():
+def roll_dice_route():   
     current_game = GameState.query.first()
     current_player = Player.query.get(current_game.current_player_id)
-    die1, die2 = roll_dice()
-    move_player(current_player, die1 + die2)
+    result = roll_dice()
+    move_player(current_player, result)
     db.session.commit()
     return render_template('dice_result.html', result=result, player=current_player)
 
