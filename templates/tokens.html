@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<h1>Players and Tokens</h1>
+{% endblock %}
+
+{% block body %}
+<div>
+    <ul>
+        {% for player in players %}
+        <li>{{ player.name }}: {{ player.token }}</li>
+        {% endfor %}
+    </ul>
+    <form action="{{ url_for('roll_dice_route') }}" method="post">
+        <button type="submit">Start Game</button>
+    </form>
+</div>
+{% endblock %}

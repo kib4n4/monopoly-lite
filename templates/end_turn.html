@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<h1>End Turn</h1>
+{% endblock %}
+
+{% block body %}
+<div>
+    <p>Next player: {{ next_player.name }}</p>
+    <form action="{{ url_for('roll_dice_route') }}" method="post">
+        <button type="submit">Roll Dice</button>
+    </form>
+</div

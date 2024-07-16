@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+    .results-board {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 80vh;
+        /* Adjust height as needed */
+        text-align: center;
+    }
+
+    .results-board>div {
+        margin-bottom: 10px;
+    }
+
+    .results-board form {
+        margin-top: 20px;
+    }
+</style>
+<h1 class="text-center">Dice Roll Result</h1>
+{% endblock %}
+
+{% block body %}
+<div class="results-board">
+    {% if game_state.status == 'waiting' %}
+    <div class="dice-result">
+        {% for player in game_state.players %}
+        {% if game_state.current_player_id == player.id %}
+
+        <div> {{ player.name }} moves to square {{ player.position }}</div>
+
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    {% endif %}
+    {% if game_state.status == 'ongoing' %}
+    <div class="dice-result">
+        {% for player in game_state.players %}
+        {% if game_state.current_player_id != player.id %}
+
+        <div> {{ player.name }} moves to square {{ player.position }}</div>
+
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    {% endif %}
+
+    {% if game_state.status == 'pending' %}
+    <div>
+        <form action="{{ url_for('roll_dice_route') }}" method="post">
+            <input type="hidden" name="room_id" value="{{ game_state.room }}">
+            <button type="submit" class="btn btn-hover btn-success btn-md">Start Game</button>
+        </form>
+    </div>
+    {% endif %}
+
+    {% if game_state.status == 'ongoing' %}
+    <div class="players-display">
+        {% for player in game_state.players %}
+        {% if game_state.current_player_id == player.id %}
+        <div>
+
+            <div class="player-display btn-danger"> {{ player.name }}</div>
+            <div> Square {{ player.position }}</div>
+            <div> $ {{ player.money }}</div>
+
+        </div>
+        {% else %}
+        <div>
+
+            <div class="player-display  btn-secondary"> {{ player.name }}</div>
+            <div> Square {{ player.position }}</div>
+            <div> $ {{ player.money }}</div>
+
+        </div>
+
+        {% endif %}
+        {% endfor %}
+    </div>
+    <div>
+        <form action="{{ url_for('roll_dice_route') }}" method="post">
+            <input type="hidden" name="room_id" value="{{ game_state.room }}">
+            <button type="submit" class="btn btn-hover btn-warning btn-md">Roll Dice</button>
+        </form>
+    </div>
+    {% endif %}
+
+    {% if game_state.status == 'waiting' %}
+    <div class="players-display">
+        {% for player in game_state.players %}
+        {% if game_state.current_player_id == player.id %}
+        <div>
+
+            <div class="player-display"> {{ player.name }}</div>
+            <div> Square {{ player.position }}</div>
+            <div> $ {{ player.money }}</div>
+
+        </div>
+        {% else %}
+        <div>
+
+            <div class="player-display "> {{ player.name }}</div>
+            <div> Square {{ player.position }}</div>
+            <div> $ {{ player.money }}</div>
+
+        </div>
+
+        {% endif %}
+        {% endfor %}
+    </div>
+    <div>
+        <form action="{{ url_for('switch_turn') }}" method="post">
+            <input type="hidden" name="room_id" value="{{ game_state.room }}">
+            <button type="submit" class="btn btn-hover btn-secondary btn-md">Proceed</button>
+        </form>
+    </div>
+    {% endif %}
+
+    {% if game_state.status == 'finished' %}
+    <div>
+
+        <button class="btn btn-hover btn-danger btn-md">Game Over</button>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

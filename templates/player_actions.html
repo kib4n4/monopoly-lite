@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<h1>Player Actions</h1>
+{% endblock %}
+
+{% block body %}
+<div>
+    <h2>{{ player.name }}'s Turn</h2>
+    <p>Current Position: {{ square.name }}</p>
+    {% if square.type == 'property' %}
+    <p>Price: {{ square.price }}</p>
+    
+    <form action="{{ url_for('buy_property', property_id=square.id) }}" method="post">
+        <button type="submit">Buy Property</button>
+    </form>
+    {% endif %}
+    <form action="{{ url_for('end_turn') }}" method="post">
+        <button type="submit">End Turn</button>
+    </form>
+</div>
+{% endblock %}
