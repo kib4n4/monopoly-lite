@@ -3,39 +3,16 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import random
 from board import*
-
+from models import*
+from dice import roll_dice, result
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///monopoly.db'
 app.config['SECRET_KEY'] = 'ultrasecretkey'
 db = SQLAlchemy(app)
 
-class Player(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
-    token = db.Column(db.String(50), nullable=False)
-    money = db.Column(db.Integer, default=1500)
-    position = db.Column(db.Integer, default=0)
-    in_jail = db.Column(db.Boolean, default=False)
-    get_out_of_jail_free = db.Column(db.Boolean, default=False)
-    properties = db.relationship('Property', backref='owner', lazy=True)
 
-class Property(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
-    price = db.Column(db.Integer, nullable=False)
-    rent = db.Column(db.PickleType, nullable=False)
-    owner_id = db.Column(db.Integer, db.ForeignKey('player.id'), nullable=True)
 
-class GameState(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    current_player_id = db.Column(db.Integer, db.ForeignKey('player.id'))
-    players = db.relationship('Player', backref='game_state', lazy=True)
-
-def roll_dice():
-    die1 = random.randint(1, 6)
-    die2 = random.randint(1, 6)
-    return die1, die2
 
 def move_player(player, steps):
     player.position = (player.position + steps) % len(board)
@@ -69,7 +46,7 @@ def roll_dice_route():
     die1, die2 = roll_dice()
     move_player(current_player, die1 + die2)
     db.session.commit()
-    return render_template('dice_result.html', result=die1 + die2, player=current_player)
+    return render_template('dice_result.html', result, player=current_player)
 
 @app.route('/end_turn', methods=['POST'])
 def end_turn():
