@@ -1,5 +1,7 @@
+from flask_sqlalchemy import SQLAlchemy
+
 # models.py
-from app import db
+db = SQLAlchemy()
 
 class Player(db.Model):
     id = db.Column(db.Integer, primary_key=True)
