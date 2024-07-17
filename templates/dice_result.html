@@ -12,12 +12,13 @@
         text-align: center;
     }
 
-    .results-board>div {
+    .results-board > div {
         margin-bottom: 10px;
     }
 
     .results-board form {
         margin-top: 20px;
+        margin-left: 20px;
     }
 </style>
 <h1 class="text-center">Dice Roll Result</h1>
@@ -29,25 +30,20 @@
     <div class="dice-result">
         {% for player in game_state.players %}
         {% if game_state.current_player_id == player.id %}
-
         <div> {{ player.name }} moves to square {{ player.position }}</div>
-
         {% endif %}
         {% endfor %}
     </div>
-
     {% endif %}
+
     {% if game_state.status == 'ongoing' %}
     <div class="dice-result">
         {% for player in game_state.players %}
         {% if game_state.current_player_id != player.id %}
-
         <div> {{ player.name }} moves to square {{ player.position }}</div>
-
         {% endif %}
         {% endfor %}
     </div>
-
     {% endif %}
 
     {% if game_state.status == 'pending' %}
@@ -64,21 +60,16 @@
         {% for player in game_state.players %}
         {% if game_state.current_player_id == player.id %}
         <div>
-
             <div class="player-display btn-danger"> {{ player.name }}</div>
             <div> Square {{ player.position }}</div>
             <div> $ {{ player.money }}</div>
-
         </div>
         {% else %}
         <div>
-
-            <div class="player-display  btn-secondary"> {{ player.name }}</div>
+            <div class="player-display btn-secondary"> {{ player.name }}</div>
             <div> Square {{ player.position }}</div>
             <div> $ {{ player.money }}</div>
-
         </div>
-
         {% endif %}
         {% endfor %}
     </div>
@@ -95,21 +86,16 @@
         {% for player in game_state.players %}
         {% if game_state.current_player_id == player.id %}
         <div>
-
             <div class="player-display"> {{ player.name }}</div>
             <div> Square {{ player.position }}</div>
             <div> $ {{ player.money }}</div>
-
         </div>
         {% else %}
         <div>
-
             <div class="player-display "> {{ player.name }}</div>
             <div> Square {{ player.position }}</div>
             <div> $ {{ player.money }}</div>
-
         </div>
-
         {% endif %}
         {% endfor %}
     </div>
@@ -123,10 +109,19 @@
 
     {% if game_state.status == 'finished' %}
     <div>
-
         <button class="btn btn-hover btn-danger btn-md">Game Over</button>
     </div>
     {% endif %}
-
+    <h1 class="text-center">Property Decision</h1>
+    <form action="">
+        <input type="hidden" name="room_id" value="{{ game_state.room }}">
+        <select name="property_id">
+            {% for property in game_state.properties %}
+            <option value="{{ property.id }}">{{ property.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">select property</button>
+    </form>
+    <button type="submit">buy</button><button type="submit">sell</button>
 </div>
 {% endblock %}
