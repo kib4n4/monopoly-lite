@@ -61,6 +61,7 @@ def rooms(room):
 
             game_state.status = 'waiting'
             # computer buying logic
+            
             # switching to user
             next_player = Player.query.filter(
                 Player.game_state_id == game_state.id, Player.id != game_state.current_player_id).first()

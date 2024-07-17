@@ -1,73 +1,58 @@
 .body {
-  background-color: rgb(29, 105, 172);
-}
-
-/* bootstrap button style */
-.btn {
-  background-color: #f4511e;
-  border: none;
-  color: white;
-  padding: 14px 40px;
-  text-align: center;
-  font-size: 16px;
-  margin: 4px 2px;
-  opacity: 0.6;
-  transition: opacity 0.3s ease-in-out;
-  border-radius: 4px;
-}
-
-.btn:hover {
-  opacity: 1;
-}
-
-.btn-success {
-  background-color: #4CAF50;
-}
-
-.btn-info {
-  background-color: #2196F3;
-    color: white;
-}
-
-.btn-warning {
-  background-color: yellow;
-    color: black;
-}
-
-.btn-danger {
-  background-color: #810606;
-  color: white;
-}
-
-.btn-secondary {
-  background-color: #555555;
-  color: white;
-}
-
-.btn-light {
-  background-color: #f1f1f1;
-  color: black;
-}
-
-.btn-dark {
-  background-color: #555555;
-  color: white;
-}
-
-.btn-link {
-  background-color: #f1f1f1;
-  color: black;
-}
-
-.players-display {
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url("https://m.media-amazon.com/images/I/81oC5pYhh2L._AC_SL1500_.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.monopoly-board {
+  width: 60%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10px;
+}
+
+.results-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 40%;
+  height: 80%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.results-board > div {
+  margin-bottom: 10px;
+}
+
+.results-board form {
+  margin-top: 20px;
 }
 
 .player-display {
-  margin: 10px;
-  padding: 10px;
-  border-radius: 10px;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.btn-hover {
+  transition: background-color 0.3s ease;
+}
+
+.btn-hover:hover {
+  background-color: #007bff;
+  color: white;
 }
