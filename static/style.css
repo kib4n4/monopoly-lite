@@ -2,7 +2,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
+  background-color: #3391f0;
   color: #333;
 }
 
@@ -13,7 +13,7 @@ body {
 
 .monopoly-board {
   text-align: center;
-  margin: 20px 0;
+  margin-right: 0px 0;
 }
 
 .monopoly-board img {
@@ -27,13 +27,15 @@ body {
 }
 
 .left-sidebar {
-  width: 300px;
-  margin: 20px;
-  background: #fff;
+  width: 30px;
+  margin-left: 20px;
+  background: #f5a9a9;
   border: 1px solid #ddd;
+  margin-left: 0px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  display: fixed;
 }
 
 .results-board {
