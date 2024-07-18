@@ -105,16 +105,18 @@
             <div class="players-display">
                 {% for player in game_state.players %}
                 {% if game_state.current_player_id == player.id %}
-                <div>
+                <div><!--player information-->
                     <div class="player-display btn-danger">{{ player.name }}</div>
-                    <div>Square {{ player.position }}</div>
-                    <div>$ {{ player.money }}</div>
+                    <div class="player-display btn-danger" >Square {{ player.position }}</div>
+                    <div class="player-display btn-danger">$ {{ player.money }}</div>
+                    <div class="player-display btn-danger">{{ board[player.position].name }}</div>
                 </div>
                 {% else %}
                 <div>
                     <div class="player-display btn-secondary">{{ player.name }}</div>
-                    <div>Square {{ player.position }}</div>
-                    <div>$ {{ player.money }}</div>
+                    <div class="player-display btn-secondary" >Square {{ player.position }}</div>
+                    <div class="player-display btn-secondary">$ {{ player.money }}</div>
+                    <div class="player-display btn-secondary">{{ board[player.position].name }}</div>
                 </div>
                 {% endif %}
                 {% endfor %}
@@ -135,15 +137,17 @@
                 {% for player in game_state.players %}
                 {% if game_state.current_player_id == player.id %}
                 <div>
-                    <div class="player-display">{{ player.name }}</div>
-                    <div>Square {{ player.position }}</div>
-                    <div>$ {{ player.money }}</div>
+                    <div class="player-display btn-danger" >{{ player.name }}</div>
+                    <div class="player-display btn-danger">Square {{ player.position }}</div>
+                    <div class="player-display btn-danger">$ {{ player.money }}</div>
+                    <div class="player-display btn-danger">{{ board[player.position].name }}</div>
                 </div>
                 {% else %}
                 <div>
-                    <div class="player-display">{{ player.name }}</div>
-                    <div>Square {{ player.position }}</div>
-                    <div>$ {{ player.money }}</div>
+                    <div class="player-display btn-secondary">{{ player.name }}</div>
+                    <div class="player-display btn-secondary">Square {{ player.position }}</div>
+                    <div class="player-display btn-secondary">$ {{ player.money }}</div>
+                    <div class="player-display btn-secondary">{{ board[player.position].name }}</div>
                 </div>
                 {% endif %}
                 {% endfor %}
@@ -152,7 +156,11 @@
                 <form action="{{ url_for('switch_turn') }}" method="post">
                     <input type="hidden" name="room_id" value="{{ game_state.room }}">
                     <button onclick="rollDice()" type="submit" class="btn btn-hover btn-secondary btn-md">Roll Dice</button>
-                    <div id="status"></div>
+                    <div id="status">
+                        <span class="dice" id="dice1"></span>
+                        <span class="dice" id="dice2"></span> 
+
+                    </div>
                     <span class="dice" id="dice1"></span>
                     <span class="dice" id="dice2"></span>              
                 </form>
@@ -166,18 +174,7 @@
             </div>
             {% endif %}
 
-            <h1 class="text-center">Property Decision</h1>
-            <form action="">
-                <input type="hidden" name="room_id" value="{{ game_state.room }}">
-                <select name="property_id">
-                    {% for property in game_state.properties %}
-                    <option value="{{ property.id }}">{{ property.name }}</option>
-                    {% endfor %}
-                </select>
-                <button type="submit">Select Property</button>
-            </form>
-            <button type="submit">Buy</button>
-            <button type="submit">Sell</button>
+       
         </div>
     </div>
 </div>
