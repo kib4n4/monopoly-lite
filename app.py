@@ -60,8 +60,7 @@ def rooms(room):
             move_player(current_player, die1 + die2)
 
             game_state.status = 'waiting'
-            # computer buying logic
-            
+                      
             # switching to user
             next_player = Player.query.filter(
                 Player.game_state_id == game_state.id, Player.id != game_state.current_player_id).first()
@@ -70,7 +69,7 @@ def rooms(room):
             db.session.commit()
 
         
-        return render_template('dice_result.html', game_state=game_state)
+        return render_template('dice_result.html', game_state=game_state,board=board)
 
 
 @app.route('/tokens')
