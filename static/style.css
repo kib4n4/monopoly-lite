@@ -1,73 +1,145 @@
-.body {
-  background-color: rgb(29, 105, 172);
+/* style.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
 }
 
-/* bootstrap button style */
-.btn {
-  background-color: #f4511e;
-  border: none;
-  color: white;
-  padding: 14px 40px;
+.text-center {
   text-align: center;
-  font-size: 16px;
-  margin: 4px 2px;
-  opacity: 0.6;
-  transition: opacity 0.3s ease-in-out;
-  border-radius: 4px;
+  margin-top: 20px;
 }
 
-.btn:hover {
-  opacity: 1;
+.monopoly-board {
+  text-align: center;
+  margin: 20px 0;
 }
 
-.btn-success {
-  background-color: #4CAF50;
+.monopoly-board img {
+  width: 80%;
+  max-width: 800px;
 }
 
-.btn-info {
-  background-color: #2196F3;
-    color: white;
+.container {
+  display: flex;
+  justify-content: center;
 }
 
-.btn-warning {
-  background-color: yellow;
-    color: black;
+.left-sidebar {
+  width: 300px;
+  margin: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
-.btn-danger {
-  background-color: #810606;
-  color: white;
+.results-board {
+  margin-bottom: 20px;
 }
 
-.btn-secondary {
-  background-color: #555555;
-  color: white;
-}
-
-.btn-light {
-  background-color: #f1f1f1;
-  color: black;
-}
-
-.btn-dark {
-  background-color: #555555;
-  color: white;
-}
-
-.btn-link {
-  background-color: #f1f1f1;
-  color: black;
+.dice-result {
+  margin-bottom: 20px;
 }
 
 .players-display {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
+  margin-bottom: 20px;
 }
 
 .player-display {
-  margin: 10px;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-hover:hover {
+  background-color: #e2e6ea;
+  border-color: #dae0e5;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-warning {
+  color: #212529;
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.dice {
+  font-size: 90px;
+}
+
+[data-num='1'] {
+  color: hotpink;
+}
+
+[data-num='2'] {
+  color: blue;
+}
+
+[data-num='3'] {
+  color: tan;
+}
+
+[data-num='4'] {
+  color: purple;
+}
+
+[data-num='5'] {
+  color: orange;
+}
+
+[data-num='6'] {
+  color: green;
+}
+
+#status {
+  margin: 10px 0;
+  font-size: 18px;
+  color: #28a745;
+}
+
+.property-decision {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.property-decision form {
+  display: inline-block;
+  margin: 0 10px;
 }
